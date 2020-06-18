@@ -62,6 +62,23 @@
         {
             background: #F5FAFA;
         }
+        
+        .sel_btn{
+            height: 21px;
+            line-height: 21px;
+            padding: 0 11px;
+            background: #02bafa;
+            border: 1px #26bbdb solid;
+            border-radius: 3px;
+            /*color: #fff;*/
+            display: inline-block;
+            text-decoration: none;
+            font-size: 12px;
+            outline: none;
+        }
+        .ch_cls{
+            background: #e4e4e4;
+        }
 </style>
 </head>
 <body style = "background:url(images/back0.2.jpg); background-size: 100%;">
@@ -89,11 +106,11 @@
 		<h1 align="center" style = "color:red">欢迎管理员</h1>
 		<p align="center" font-size:20px>请选择操作继续：</p>
 		<div align="center" >
-		<a href="Userprint_Ser">
+		<a href="Userprint.action">
 		<button>查看用户</button>
 		</a>
 		
-		<a href="Lprint_Ser">
+		<a href="Lprint.action">
 		<button>查看借书表</button>
 		</a>
 	</div>
@@ -122,26 +139,44 @@
 			<td><s:property value="price"/></td>
 			<td><s:property value="author"/></td>
 			<td>
-				<a href="customerlist.html">删除</a>
+				<a href="bookdel.action?bid=${id}">删除</a>
 			</td>
 			<td>
-				<a href="updatecustomer.html">修改</a>
+				<a href="bookupd.action?bid=${id} ">修改</a>
 			</td>
-		</tr>
 		</tr>
 		</s:iterator>
-		<tr>
-			<td align = "center" colspan = "7">
-				页码位置
-			</td>
-		</tr>
 	</table>
+	<div align = "center">
+				<s:if test="page==1">
+					<a class="sel_btn ch_cls" href="BacktoAdmin.action">previous page</a>
+				</s:if>
+				<s:if test="page!=1">
+					<a class="sel_btn ch_cls" href="BacktoAdmin.action?page=${page-1}">previous page</a>
+				</s:if>
+				
+				<s:iterator var="i" begin="1" end="totalPage">
+					<s:if test="page==#i">
+						${i} 
+					</s:if>
+					<s:if test="page!=#i">
+						<a class="sel_btn" href="BacktoAdmin.action?page=${i }">${i }</a>
+					</s:if>
+				</s:iterator>
+		
+				<s:if test="page==totalPage">
+					<a class="sel_btn ch_cls" href="BacktoAdmin.action">next page</a>
+				</s:if>
+				<s:if test="page!=totalPage">
+					<a class="sel_btn ch_cls" href="BacktoAdmin.action?page=${page+1}">next page</a>
+				</s:if>
+			</div>
 	<br>
 	<br>
 	<div align="center">
-		<a  href="Addinfo.jsp">
+		<a  href="Addbook.action">
     		<button>增加信息</button></a>
-    	<a  href="Rebprint_Ser">
+    	<a  href="Rebprint.action">
     		<button>查看还书表</button></a>
 	</div>
 	<div  align="right" margin-left:80%>

@@ -10,12 +10,12 @@ import cn.edu.xaut.entity.User;
 
 public class LoginAction extends ActionSupport{
 	
-	List<Book> books;
-	User user;
+	private List<Book> books;
+	private User user;
 	
-	int page;
-	int pageSize;
-	int totalPage;
+	private int page;
+	private int pageSize;
+	private int totalPage;
 	
 	
 	public List<Book> getBooks() {
@@ -49,25 +49,22 @@ public class LoginAction extends ActionSupport{
 	public void setUser(User user) {
 		this.user = user;
 	}
-//	insert into Book values('算法设计', 41 , 36.5 ,'赵雪');
-//	insert into Book values('编译原理', 10 , 20.5 ,'墨菲菲');
-//	insert into Book values('计算机网络', 12 , 31.5 ,'韩忠国');
-//	insert into Book values('机组原理', 22 , 61.5 ,'白中英');
-//	insert into Book values('JSP设计',18,39.5,'耿祥义')
 
-	public String execute() {
-		Book book1 = new Book(1,"数据结构",(float)32.5,20,"王涵");
-		Book book2 = new Book(2,"编译原理",(float)20.5,10,"赵雪");
-		Book book3 = new Book(3,"计算机网络",(float)31.5,12,"墨菲菲");
-		Book book4 = new Book(1,"机组原理",(float)61.5,22,"韩忠国");
+	public String login() {
+		Book book1 = new Book(1,"数据结构",32.5f,20,"王涵");
+		Book book2 = new Book(2,"编译原理",20.5f,10,"赵雪");
+		Book book3 = new Book(3,"计算机网络",31.5f,12,"墨菲菲");
+		Book book4 = new Book(4,"机组原理",61.5f,22,"韩忠国");
 		
-		books = new ArrayList();
+		books = new ArrayList<Book>();
 		this.books.add(book1);
 		this.books.add(book2);
 		this.books.add(book3);
 		this.books.add(book4);
-		this.totalPage = 2;
 		
+		this.totalPage = 2;
+		System.out.println(page);
+		System.out.println("登录信息:"+user.getUsername()+"\n"+user.getPassword());
 		if(user.getUsername().equals("admin")&&user.getPassword().equals("password")) {
 			// 管理员界面
 			return "admin";
@@ -80,6 +77,11 @@ public class LoginAction extends ActionSupport{
 			return INPUT;
 		}
 		
+	}
+	
+	public String backtoadmin() {
+		System.out.println("backtoadmin//comed!");
+		return SUCCESS;
 	}
 	
 	

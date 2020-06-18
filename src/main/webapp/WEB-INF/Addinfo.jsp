@@ -1,18 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix = "s" uri = "/struts-tags" %>
+<!DOCTYPE html>
 <html>
 <head>
-<%
-	String  result = "XX图书欢迎您";
-	if(request.getAttribute("result")!=null){
-		result = (String) request.getAttribute("result");
-	}
-%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录图书管理系统 </title>
+<meta charset="UTF-8">
+<title>信息输入</title>
 <style type="text/css">
-button {
+button {  
         width: 200px;  
         padding:8px;  
         background-color: #428bca;  
@@ -53,43 +47,43 @@ button {
         {
             background: #F5FAFA;
         }
-<!--
-.STYLE1 {
-	font-size: 36px;
-	font-weight: bold;
-}
--->
 </style>
 <script>
 	function Tiaozhuan() {
-		document.getElementById("form2").submit();
+		document.getElementById("formAdd").submit();
 	}
 </script>
 </head>
 <body style = "background:url(images/back0.2.jpg); background-size: 100%;">
-<br><br><br><br><br><br><br>
-<form id = "form2" method="post" action="Login_Check">
-  <table width="400" height="120" border="1" align="center">
-    <caption>
-      <span class="STYLE1">XX图书</span>
-    </caption>
-    <tr>
-      <td align = "center" width="166">用户名：</td>
-      <td width="318"><input name="user.username" type="text" id="username"></td>
-    </tr>
-    <tr>
-      <td align = "center">密码：</td>
-      <td width="318"><input name="user.password" type="password" id="password"></td>
-    </tr>
-    <tr>
-      <td colspan="2" align = "center">
-      <p>还没有账号？<a href="reg.jsp">点击注册</a></p>
-      
-    </tr>
-  </table>
-</form>
-<div align="center"><button  form="form2" onclick="Tiaozhuan()">登录</button></div>
-<p align = "center" style = "color:red"><%=result %> </p>
-<jsp:include page ="/DynamicTime.jsp"/>
+	<form id="formAdd" name="form3" action="BacktoAdmin.action" method="post">
+  		<table width="500" height="120" border="1" align="center">
+   		 <caption>
+     	 <span style = "font-size: 36px;font-weight: bold;">信息录入</span>
+		 </caption>
+    	<tr>
+    	  <td align = "center" width="266">图书名称：</td>
+    	  <td width="318"><input  type="text" name="bookname" id="bookname" ></td>
+    	</tr>
+    	<tr>
+     	  <td align = "center">价格：</td>
+    	  <td><input type="text" name="price" id="price" ></td>
+    	</tr>
+    	
+    	<tr>
+     	  <td align = "center">数量：</td>
+    	  <td><input type="text" name="count" id="count" >
+    	</tr>
+    	<tr>
+     	  <td align = "center">作者：</td>
+    	  <td><input type="text" name="author" id="author" >
+    	</tr>
+  	</table>
+  	<div align="center">
+    		<button form="form3" onclick="Tiaozhuan()">信息提交</button>
+	</div>
+	<div align="right">
+		<a href="BacktoAdmin.action">返回</a>
+	</div>
+	<jsp:include page ="/DynamicTime.jsp"/>
 </body>
 </html>

@@ -38,14 +38,78 @@
 
 <struts>
 
-    <package name="Login" namespace="/" extends="struts-default">
-       <action name="Login_Check" class="cn.edu.xaut.web.LoginAction" >
-       	<result name="admin">
-       		/WEB-INF/index_Admin.jsp
-       	</result>
-       	<result name="user">
-       		/WEB-INF/index_user.jsp</result>
+	<package name="Login" namespace="/" extends="struts-default">
+	
+       	<action name="Login_Check" class="cn.edu.xaut.web.LoginAction" method = "login">
+       		<param name="pageSize">2</param>
+			<param name="page">1</param>
+       		<result name="admin" >
+       			/WEB-INF/index_Admin.jsp
+       		</result>
+       		<result name="user" >
+       			/WEB-INF/index_user.jsp
+       		</result>
+       		<result name="input">
+       			login.jsp
+       		</result>
        	</action>
+       	
+       	<action name="BacktoAdmin" class = "cn.edu.xaut.web.LoginAction" method = "backtoadmin">
+       		<param name="user.username">admin</param>
+			<param name="user.password">password</param>
+    		<result name = "success" type = "chain">
+    			Login_Check
+    		</result>
+    	</action>
+    	
+    </package>
+    
+    <package name="Admin" namespace="/" extends="struts-default">
+    	
+    	<action name="Userprint" class = "cn.edu.xaut.web.AdminAction" method = "userprint">
+    		<result name = "success">
+    			/WEB-INF/userprint.jsp
+    		</result>
+    	</action>
+    	
+    	<action name="Lprint" class = "cn.edu.xaut.web.AdminAction" method = "ublprint">
+    		<result name = "success">
+    			/WEB-INF/ublprint.jsp
+    		</result>
+    	</action>
+    	
+    	<action name="bookdel" class = "cn.edu.xaut.web.AdminAction" method = "bookdel">
+    		<result name = "success">
+    			/WEB-INF/updateinfo.jsp
+    		</result>
+    	</action>
+    	
+    	<action name="Updateinfo" class = "cn.edu.xaut.web.AdminAction" method = "bupdateinfo">
+    		<param name="user.username">admin</param>
+			<param name="user.password">password</param>
+    		<result name = "success" type = "chain">
+    			Login_Check
+    		</result>
+    	</action>
+    	
+    	<action name="bookupd" class = "cn.edu.xaut.web.AdminAction" method = "bookupd">
+    		<result name = "success">
+    			/WEB-INF/updateinfo.jsp
+    		</result>
+    	</action>
+    	
+    	<action name="Addbook" class = "cn.edu.xaut.web.AdminAction" method = "addbook">
+    		<result name = "success">
+    			/WEB-INF/Addinfo.jsp
+    		</result>
+    	</action>
+    	
+    	<action name="Rebprint" class = "cn.edu.xaut.web.AdminAction" method = "rebprint">
+    		<result name = "success">
+    			/WEB-INF/rebprint.jsp
+    		</result>
+    	</action>
+    	
     </package>
 
 </struts>
