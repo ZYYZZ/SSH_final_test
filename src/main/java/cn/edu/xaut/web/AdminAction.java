@@ -15,9 +15,16 @@ public class AdminAction extends ActionSupport{
 	private List<UBL> ubls;
 	private List<UBR> ubrs;
 	
+	private Book book;
+
 	private int bid;
 	
-	
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
+	}
 	public int getBid() {
 		return bid;
 	}
@@ -82,6 +89,7 @@ public class AdminAction extends ActionSupport{
 	
 
 	public String userprint() {
+		
 		User user1 = new User(100,"asd123","2609728289@qq.com","15389218283");
 		User user2 = new User(101,"asd1234","2609728289@qq.com","15389218283");
 		User user3 = new User(102,"asd1235","123@qq.com","15389218283");
@@ -108,6 +116,7 @@ public class AdminAction extends ActionSupport{
 	}
 	
 	public String bookdel() {
+		//数据库删书
 		return SUCCESS;
 	}
 	
@@ -130,7 +139,7 @@ public class AdminAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	public String addtodata() {
+	public String addinfo() {
 		//调用DAO持久化书本信息
 		return SUCCESS;
 	}

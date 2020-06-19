@@ -55,27 +55,27 @@ button {
 </script>
 </head>
 <body style = "background:url(images/back0.2.jpg); background-size: 100%;">
-	<form id="formAdd" name="form3" action="BacktoAdmin.action" method="post">
+	<form id="formAdd" name="form3" action="Addinfo.action" method="post">
   		<table width="500" height="120" border="1" align="center">
    		 <caption>
      	 <span style = "font-size: 36px;font-weight: bold;">信息录入</span>
 		 </caption>
     	<tr>
     	  <td align = "center" width="266">图书名称：</td>
-    	  <td width="318"><input  type="text" name="bookname" id="bookname" ></td>
+    	  <td width="318"><input  type="text" name="book.name" id="bookname" ></td>
     	</tr>
     	<tr>
      	  <td align = "center">价格：</td>
-    	  <td><input type="text" name="price" id="price" ></td>
+    	  <td><input type="text" name="book.price" id="price" ></td>
     	</tr>
     	
     	<tr>
      	  <td align = "center">数量：</td>
-    	  <td><input type="text" name="count" id="count" >
+    	  <td><input type="text" name="book.count" id="count" >
     	</tr>
     	<tr>
      	  <td align = "center">作者：</td>
-    	  <td><input type="text" name="author" id="author" >
+    	  <td><input type="text" name="book.author" id="author" >
     	</tr>
   	</table>
   	<div align="center">

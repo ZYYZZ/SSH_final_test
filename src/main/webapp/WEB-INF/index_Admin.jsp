@@ -138,12 +138,15 @@
 			<td><s:property value="count"/></td>
 			<td><s:property value="price"/></td>
 			<td><s:property value="author"/></td>
-			<td>
-				<a href="bookdel.action?bid=${id}">删除</a>
-			</td>
+			
 			<td>
 				<a href="bookupd.action?bid=${id} ">修改</a>
 			</td>
+			
+			<td>
+				<a href="bookdel.action?bid=${id}">删除</a>
+			</td>
+			
 		</tr>
 		</s:iterator>
 	</table>

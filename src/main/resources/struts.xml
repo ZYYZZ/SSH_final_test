@@ -47,7 +47,7 @@
        			/WEB-INF/index_Admin.jsp
        		</result>
        		<result name="user" >
-       			/WEB-INF/index_user.jsp
+       			/WEB-INF/index_User.jsp
        		</result>
        		<result name="input">
        			login.jsp
@@ -57,6 +57,12 @@
        	<action name="BacktoAdmin" class = "cn.edu.xaut.web.LoginAction" method = "backtoadmin">
        		<param name="user.username">admin</param>
 			<param name="user.password">password</param>
+    		<result name = "success" type = "chain">
+    			Login_Check
+    		</result>
+    	</action>
+    	
+    	<action name="BacktoUser" class = "cn.edu.xaut.web.LoginAction" method = "backtouser">
     		<result name = "success" type = "chain">
     			Login_Check
     		</result>
@@ -79,8 +85,8 @@
     	</action>
     	
     	<action name="bookdel" class = "cn.edu.xaut.web.AdminAction" method = "bookdel">
-    		<result name = "success">
-    			/WEB-INF/updateinfo.jsp
+    		<result name = "success" type = "chain">
+    			BacktoAdmin
     		</result>
     	</action>
     	
@@ -98,15 +104,37 @@
     		</result>
     	</action>
     	
+    	<action name="Addinfo" class = "cn.edu.xaut.web.AdminAction" method = "addtinfo">
+    		<result name = "success" type = "chain">
+    			BacktoAdmin
+    		</result>
+    	</action>
+    	
     	<action name="Addbook" class = "cn.edu.xaut.web.AdminAction" method = "addbook">
     		<result name = "success">
-    			/WEB-INF/Addinfo.jsp
+    			/WEB-INF/addinfo.jsp
     		</result>
     	</action>
     	
     	<action name="Rebprint" class = "cn.edu.xaut.web.AdminAction" method = "rebprint">
     		<result name = "success">
     			/WEB-INF/rebprint.jsp
+    		</result>
+    	</action>
+    	
+    </package>
+    
+    <package name="User" namespace="/" extends="struts-default">
+    
+    	<action name="Rebook" class = "cn.edu.xaut.web.UserAction" method = "rebook">
+    		<result name = "success" type = "chain">
+    			BacktoUser
+    		</result>
+    	</action>
+    	
+    	<action name="passwordUpdate" class = "cn.edu.xaut.web.UserAction" method = "passwordupdate">
+    		<result name = "success" type = "chain">
+    			BacktoUser
     		</result>
     	</action>
     	

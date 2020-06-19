@@ -74,17 +74,17 @@ button {
 			<form name="Updateform" id="formUpdate" action="Updateinfo.action" method ="post">
 			<td> </td>
 		<td>
-			<input type = "hidden" name = "bid" value="${bid}">
-			<input style = "width:95%" type = "text" name= "nbookname">
+			<input type = "hidden" name = "book.id" value="${bid}">
+			<input style = "width:95%" type = "text" name= "book.name">
 		</td>
 		<td>
-			<input style = "width:95%" type = "text" name= "nbookcount">
+			<input style = "width:95%" type = "text" name= "book.count">
 		</td>
 		<td>
-			<input style = "width:95%" type = "text" name= "nbookprice">
+			<input style = "width:95%" type = "text" name= "book.price">
 		</td>
 		<td>
-			<input style = "width:95%" type = "text" name= "nbookauthor">
+			<input style = "width:95%" type = "text" name= "book.author">
 		</td>
 			</form>
 		</tr>

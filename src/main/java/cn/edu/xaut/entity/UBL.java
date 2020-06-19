@@ -2,6 +2,7 @@ package cn.edu.xaut.entity;
 
 public class UBL {
 	Integer bid;
+	Integer uid;
 	String bname;
 	String uname;
 	String Ltime;
@@ -13,6 +14,13 @@ public class UBL {
 		this.bid = bid;
 		this.bname = bname;
 		this.uname = uname;
+		this.Ltime = Ltime;
+	}
+	
+	public UBL(int bid,String bname,int uid,String Ltime) {
+		this.bid = bid;
+		this.uid = uid;
+		this.bname = bname;
 		this.Ltime = Ltime;
 	}
 	
