@@ -8,6 +8,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 import cn.edu.xaut.entity.*;
+import cn.edu.xaut.service.*;
 
 public class AdminAction extends ActionSupport{
 	
@@ -18,6 +19,8 @@ public class AdminAction extends ActionSupport{
 	private Book book;
 
 	private int bid;
+	
+	private AdminService adminService = new AdminServiceImp();
 	
 	public Book getBook() {
 		return book;
@@ -89,34 +92,23 @@ public class AdminAction extends ActionSupport{
 	
 
 	public String userprint() {
-		
-		User user1 = new User(100,"asd123","2609728289@qq.com","15389218283");
-		User user2 = new User(101,"asd1234","2609728289@qq.com","15389218283");
-		User user3 = new User(102,"asd1235","123@qq.com","15389218283");
-		
-		users = new ArrayList<User>();
-		
-		users.add(user1);
-		users.add(user2);
-		users.add(user3);
+		users = adminService.userprint();
+
 		return SUCCESS;
 	}
 	
 	public String ublprint() {
 		
-		Date d = new Date();
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		UBL ubl1 = new UBL(1,"数据结构","wang",df.format(d));
-		UBL ubl2 = new UBL(2,"计算方法","wang",df.format(d));
-		
-		ubls = new ArrayList<UBL>();
-		ubls.add(ubl1);
-		ubls.add(ubl2);
+//		Date d = new Date();
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		UBL ubl1 = new UBL(1,"数据结构","wang",df.format(d));
+		ubls = adminService.ublprint();
 		return SUCCESS;
 	}
 	
 	public String bookdel() {
 		//数据库删书
+		adminService.bookdel(bid);
 		return SUCCESS;
 	}
 	
@@ -131,23 +123,20 @@ public class AdminAction extends ActionSupport{
 	}
 	
 	public String rebprint() {
-		UBR ubr1 = new UBR(1,"数据结构","wang",1);
-		UBR ubr2 = new UBR(1,"数据结构","wang",0);
-		
-		ubrs = new ArrayList<UBR>();
-		ubrs.add(ubr1);
-		ubrs.add(ubr2);
+		ubrs = adminService.rebprint();
 		return SUCCESS;
 	}
 	
 	public String addinfo() {
 		//调用DAO持久化书本信息
+		adminService.addBook(book);
 		return SUCCESS;
 	}
 	
 	public String bupdateinfo() {
-		System.out.println("修改id二跳："+bid);
+		System.out.println("修改id二跳："+book.getId());
 		//调用DAO修改书本信息
+		adminService.bupdateinfo(book);
 		return SUCCESS;
 	}
 	

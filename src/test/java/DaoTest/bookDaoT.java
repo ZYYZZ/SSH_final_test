@@ -64,14 +64,18 @@ public class bookDaoT {
 	}
 	
 	@Test
-	public void total() {
+	public int total() {
 		Session session = HibernateUtils.getSession();
 		String hql = "select count(*) from Book";
 		Query query = session.createQuery(hql);
 		List list = query.list();
 		int row = Integer.valueOf(list.get(0).toString());
 		
-		System.out.println(row);
+		if(row%2==0) {
+			return row/2;
+		}else {
+			return row/2+1;
+		}
 	}
 	
 	@Test

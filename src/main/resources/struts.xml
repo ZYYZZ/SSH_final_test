@@ -104,7 +104,7 @@
     		</result>
     	</action>
     	
-    	<action name="Addinfo" class = "cn.edu.xaut.web.AdminAction" method = "addtinfo">
+    	<action name="Addinfo" class = "cn.edu.xaut.web.AdminAction" method = "addinfo">
     		<result name = "success" type = "chain">
     			BacktoAdmin
     		</result>

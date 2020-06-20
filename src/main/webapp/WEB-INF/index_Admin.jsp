@@ -186,5 +186,7 @@
 		<a style = "color:white" href="Quit">退出</a>
 	</div>
 	<jsp:include page ="/DynamicTime.jsp"/>
+	
+	<s:debug></s:debug>
 </body>
 </html>

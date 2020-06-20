@@ -72,7 +72,7 @@ button {
 			<td><b>作者</b></td>
 		<tr>
 			<form name="Updateform" id="formUpdate" action="Updateinfo.action" method ="post">
-			<td> </td>
+			<td>${bid} </td>
 		<td>
 			<input type = "hidden" name = "book.id" value="${bid}">
 			<input style = "width:95%" type = "text" name= "book.name">

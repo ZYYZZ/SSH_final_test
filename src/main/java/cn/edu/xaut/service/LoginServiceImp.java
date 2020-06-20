@@ -17,8 +17,7 @@ public class LoginServiceImp implements LoginService {
 	public int findTotalPage(int pagesize) {
 		// TODO Auto-generated method stub
 		BookDao bdao = new BookDaoImp();
-		bdao.findBookTotalPage(pagesize);
-		return 0;
+		return bdao.findBookTotalPage(pagesize);
 	}
 
 	public User findUserByUsername(String username) {

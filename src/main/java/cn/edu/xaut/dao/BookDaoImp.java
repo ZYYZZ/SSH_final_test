@@ -39,18 +39,45 @@ public class BookDaoImp implements BookDao {
 
 	public void update(Book cbook) {
 		// TODO Auto-generated method stub
-		Session session = HibernateUtils.getSession();
-		String hql = "update Book b set b.name=?,b.price=?,b.count=?,b.author=? where b.id=?";
-		Query q = session.createQuery(hql);
-		q.setString(0, cbook.getName());
-		q.setFloat(1, cbook.getPrice());
-		q.setInteger(2, cbook.getCount());
-		q.setString(3, cbook.getAuthor());
+		Session session1 = HibernateUtils.getSession();
 		
-		q.executeUpdate();
+		String hql1 = "from Book where id = ?";
 		
-		session.beginTransaction().commit();
-		session.close();
+		Query q1 = session1.createQuery(hql1);
+		q1.setInteger(0, cbook.getId());
+		
+		session1.beginTransaction().commit();
+		
+		Book book = (Book) q1.list().get(0);
+		session1.close();
+		
+		if(!cbook.getAuthor().equals("")) {
+			book.setAuthor(cbook.getAuthor());
+		}
+		if(cbook.getCount()!=0) {
+			book.setCount(cbook.getCount());
+		}
+		if(!cbook.getName().equals("")) {
+			book.setName(cbook.getName());
+		}
+		if(cbook.getPrice()!=0) {
+			book.setPrice(cbook.getPrice());
+		}
+		
+		System.out.println(book.toString());
+		
+		Session session2 = HibernateUtils.getSession();
+		
+		String hql2 = "delete from Book where id = ?";
+		Query q2 = session2.createQuery(hql2);
+		q2.setInteger(0, cbook.getId());
+		
+		q2.executeUpdate();
+		
+		session2.save(book);
+		
+		session2.beginTransaction().commit();
+		session2.close();
 	}
 
 	public void addbook(Book nbook) {
