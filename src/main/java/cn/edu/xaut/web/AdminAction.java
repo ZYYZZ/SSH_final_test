@@ -126,6 +126,7 @@ public class AdminAction extends ActionSupport{
 	}
 	
 	public String addbook() {
+		//ÌîÊéÌø×ª
 		return SUCCESS;
 	}
 	

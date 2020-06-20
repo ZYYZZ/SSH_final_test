@@ -1,7 +1,5 @@
 package cn.edu.xaut.web;
 
-import java.util.List;
-
 import com.opensymphony.xwork2.ActionSupport;
 
 import cn.edu.xaut.entity.User;
