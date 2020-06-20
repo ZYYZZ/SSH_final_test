@@ -8,13 +8,13 @@
     <!-- name 代表的是实体类名   table 代表的是表名 -->
     <class name="cn.edu.xaut.entity.Book" table="book">
         <!-- name=id 代表的是Book类中属性 column=id 代表的是table表中的字段 -->
-        <id name="id" column="id">
+        <id name="id" column="bid">
             <!-- 主键的生成策略 -->
             <generator class="native"/>
         </id>
-        <property name="name" column="name" type="string"/>
-        <property name="price" column="price" type="float"/>
-        <property name="count" column="count" type="int"/>
-        <property name="author" column="author" type="string"/>
+        <property name="name" column="bname" type="string"/>
+        <property name="price" column="bprice" type="float"/>
+        <property name="count" column="bcount" type="int"/>
+        <property name="author" column="bauthor" type="string"/>
     </class>
 </hibernate-mapping>

@@ -1,15 +1,24 @@
 package cn.edu.xaut.entity;
 
-public class UBL {
+import java.io.Serializable;
+
+public class UBL implements Serializable{
+	Integer lid;
 	Integer bid;
 	Integer uid;
 	String bname;
 	String uname;
 	String Ltime;
 	
+	
+	@Override
+	public String toString() {
+		return "UBL [bid=" + bid + ", uid=" + uid + ", bname=" + bname + ", uname=" + uname + ", Ltime=" + Ltime + "]";
+	}
 	public UBL() {
 		
 	}
+	
 	public UBL(int bid,String bname,String uname,String Ltime) {
 		this.bid = bid;
 		this.bname = bname;
@@ -24,6 +33,20 @@ public class UBL {
 		this.Ltime = Ltime;
 	}
 	
+	
+	
+	public Integer getLid() {
+		return lid;
+	}
+	public void setLid(Integer lid) {
+		this.lid = lid;
+	}
+	public Integer getUid() {
+		return uid;
+	}
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
 	public Integer getBid() {
 		return bid;
 	}

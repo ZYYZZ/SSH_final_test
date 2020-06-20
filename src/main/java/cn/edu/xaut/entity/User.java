@@ -17,11 +17,18 @@ public class User implements Serializable{
 		this.phonenum = phonenum;
 	}
 	
+	public User(String username,String email,String phonenum,String password) {
+		this.username = username;
+		this.email = email;
+		this.phonenum = phonenum;
+		this.password = password;
+	}
+	
 	public User() {
 		
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {

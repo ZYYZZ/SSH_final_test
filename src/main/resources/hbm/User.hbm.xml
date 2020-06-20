@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!-- name 代表的是实体类名   table 代表的是表名 -->
+    <class name="cn.edu.xaut.entity.User" table="usertable">
+    
+   		<id name="id" column="uid">
+            <!-- 主键的生成策略 -->
+            <generator class="native"/>
+        </id>
+        
+        <property name="username" column="uusername"   type="string"/>
+        <property name="password" column="upassword" type="string"/>
+        <property name="email" column="uemail" type="string"/>
+        <property name="phonenum" column="uphonenum" type="string"/>
+    </class>
+</hibernate-mapping>

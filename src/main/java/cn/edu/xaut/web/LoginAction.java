@@ -63,9 +63,7 @@ public class LoginAction extends ActionSupport{
 
 	public String login() {
 		
-		HttpSession session = ServletActionContext.getRequest().getSession();
 		
-		this.totalPage = 2;
 		System.out.println("页码信息："+page);
 		System.out.println("登录信息:"+user.getUsername()+"\n"+user.getPassword());
 		if(user.getUsername().equals("admin")&&user.getPassword().equals("password")) {
@@ -75,7 +73,9 @@ public class LoginAction extends ActionSupport{
 			Book book3 = new Book(3,"计算机网络",31.5f,12,"墨菲菲");
 			Book book4 = new Book(4,"机组原理",61.5f,22,"韩忠国");
 			books = new ArrayList<Book>();
-		
+			
+			this.totalPage = 2;
+			
 			this.books.add(book1);
 			this.books.add(book2);
 			this.books.add(book3);
@@ -86,6 +86,7 @@ public class LoginAction extends ActionSupport{
 		}
 		
 		// 用户验证
+		HttpSession session = ServletActionContext.getRequest().getSession();
 		User duser = new User();  
 		if(session.getAttribute("User")!=null) {
 			//为BacktoUser提供服务

@@ -38,5 +38,8 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <!-- 用来关联 hbm 配置文件 -->
         <mapping resource="hbm/Book.hbm.xml"/>
+        <mapping resource="hbm/UBL.hbm.xml"/>
+        <mapping resource="hbm/UBR.hbm.xml"/>
+        <mapping resource="hbm/User.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

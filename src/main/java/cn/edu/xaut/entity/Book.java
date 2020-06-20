@@ -10,6 +10,9 @@ public class Book implements Serializable{
 	private int count;
 	private String author;
 	
+	public Book() {
+
+	}
 	public Book(int id,String name,float price, int count,String author) {
 		this.id = id;
 		this.name = name;
@@ -22,10 +25,10 @@ public class Book implements Serializable{
 		return "Book [id=" + id + ", name=" + name + ", price=" + price + ", count=" + count + ", author=" + author
 				+ "]";
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {

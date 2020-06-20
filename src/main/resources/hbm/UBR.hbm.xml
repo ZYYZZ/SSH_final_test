@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!-- name 代表的是实体类名   table 代表的是表名 -->
+    <class name="cn.edu.xaut.entity.UBR" table="ubr">
+    
+   		<id name="rid" column="rid">
+            <!-- 主键的生成策略 -->
+            <generator class="native"/>
+        </id>
+        
+        <property name="Rtime" column="rtime"   type="string"/>
+        <property name="type" column="rtype"   type="int"/>
+        <property name="bid" column="bid" type="integer"/>
+        <property name="bname" column="bname" type="string"/>
+        <property name="uname" column="uname" type="string"/>
+    </class>
+</hibernate-mapping>

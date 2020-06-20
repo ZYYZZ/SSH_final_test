@@ -10,4 +10,5 @@ public interface BookDao {
 	public void update(Book cbook);
 	public void addbook(Book nbook);
 	public int findBookTotalPage(int pageSize);
+	public Book seachone(int bid);
 }

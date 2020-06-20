@@ -1,17 +1,35 @@
 package cn.edu.xaut.entity;
 
-public class UBR {
+import java.io.Serializable;
+
+public class UBR implements Serializable{
 	
+	private Integer rid;	
 	private Integer bid;
 	private String bname;
 	private String uname;
+	private String Rtime;
 	private int type;
 	
-	public UBR(int bid,String bname,String uname,int Ltime) {
+
+	public UBR(int bid,String bname,String uname,int type) {
 		this.bid = bid;
 		this.bname = bname;
 		this.uname = uname;
-		this.type = Ltime;
+		this.type = type;
+	}
+	
+	public UBR() {
+		
+	}
+
+	
+	public Integer getRid() {
+		return rid;
+	}
+
+	public void setRid(Integer rid) {
+		this.rid = rid;
 	}
 
 	public Integer getBid() {
@@ -38,6 +56,14 @@ public class UBR {
 		this.uname = uname;
 	}
 
+	public String getRtime() {
+		return Rtime;
+	}
+
+	public void setRtime(String rtime) {
+		Rtime = rtime;
+	}
+
 	public int getType() {
 		return type;
 	}
@@ -45,6 +71,5 @@ public class UBR {
 	public void setType(int type) {
 		this.type = type;
 	}
-	
 	
 }
