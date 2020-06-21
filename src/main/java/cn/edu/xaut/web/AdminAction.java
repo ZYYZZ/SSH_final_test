@@ -124,7 +124,6 @@ public class AdminAction extends ActionSupport{
 	}
 	
 	public String bookupd() {
-		System.out.println("ÐÞ¸ÄidÒ»Ìø£º"+bid);
 		return SUCCESS;
 	}
 	
