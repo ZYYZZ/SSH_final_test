@@ -2,17 +2,32 @@ package cn.edu.xaut.dao;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import cn.edu.xaut.entity.Book;
-import cn.edu.xaut.utils.HibernateUtils;
 
+@Repository("BookDaoImp")
 public class BookDaoImp implements BookDao {
+	
+	@Resource(name = "sessionFactory")
+	SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public List<Book> findBookByPage(int page, int pageSize) {
 		// TODO Auto-generated method stub
-		Session session = HibernateUtils.getSession();
+		Session session = sessionFactory.openSession();
 		String hql = "from Book";
 		Query q = session.createQuery(hql);
 		q.setFirstResult((page-1)*pageSize);
@@ -25,7 +40,7 @@ public class BookDaoImp implements BookDao {
 
 	public void delete(int bid) {
 		
-		Session session = HibernateUtils.getSession();
+		Session session = sessionFactory.openSession();
 		String hql = "delete from Book where id = ?";
 		Query q = session.createQuery(hql);
 		q.setInteger(0, bid);
@@ -39,7 +54,7 @@ public class BookDaoImp implements BookDao {
 
 	public void update(Book cbook) {
 		// TODO Auto-generated method stub
-		Session session1 = HibernateUtils.getSession();
+		Session session1 = sessionFactory.openSession();
 		
 		String hql1 = "from Book where id = ?";
 		
@@ -66,7 +81,7 @@ public class BookDaoImp implements BookDao {
 		
 		System.out.println(book.toString());
 		
-		Session session2 = HibernateUtils.getSession();
+		Session session2 = sessionFactory.openSession();
 		
 		String hql2 = "delete from Book where id = ?";
 		Query q2 = session2.createQuery(hql2);
@@ -81,7 +96,7 @@ public class BookDaoImp implements BookDao {
 	}
 
 	public void addbook(Book nbook) {
-		Session session = HibernateUtils.getSession();
+		Session session = sessionFactory.openSession();
 		session.save(nbook);
 		session.beginTransaction().commit();
 		session.close();
@@ -91,7 +106,7 @@ public class BookDaoImp implements BookDao {
 
 	public int findBookTotalPage(int pageSize) {
 		// TODO Auto-generated method stub
-		Session session = HibernateUtils.getSession();
+		Session session = sessionFactory.openSession();
 		String hql = "select count(*) from Book";
 		Query q = session.createQuery(hql);
 		List list = q.list();
@@ -106,7 +121,7 @@ public class BookDaoImp implements BookDao {
 	}
 	
 	public Book seachone(int bid){
-		Session session = HibernateUtils.getSession();
+		Session session = sessionFactory.openSession();
 		String hql = "from Book where id=?";
 		Query q = session.createQuery(hql);
 		q.setInteger(0, bid);

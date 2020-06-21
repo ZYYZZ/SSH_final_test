@@ -2,13 +2,28 @@ package cn.edu.xaut.dao;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import cn.edu.xaut.entity.UBR;
-import cn.edu.xaut.utils.HibernateUtils;
 
+@Repository("UBRDaoImp")
 public class UBRDaoImp implements UBRDao {
+	
+	@Resource(name = "sessionFactory")
+	SessionFactory sessionFactory;
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public void Rbook(int uid, int bid) {
 		// TODO Auto-generated method stub
@@ -18,7 +33,7 @@ public class UBRDaoImp implements UBRDao {
 		if(Long.valueOf(ldao.lendtime(uid, bid))-(System.currentTimeMillis())>limit){
 			type = 0;
 		}
-		Session session = HibernateUtils.getSession();
+		Session session = sessionFactory.openSession();
 		UBR ubr = new UBR();
 		BookDao bdao = new BookDaoImp();
 		UserDao udao = new UserDaoImp();
@@ -29,12 +44,11 @@ public class UBRDaoImp implements UBRDao {
 		session.save(ubr);
 		session.beginTransaction().commit();
 		session.close();
-
 	}
 
 	public List<UBR> findAll() {
 		// TODO Auto-generated method stub
-		Session session = HibernateUtils.getSession();
+		Session session = sessionFactory.openSession();
 		String hql = "from UBR";
 		Query q = session.createQuery(hql);
 		List<UBR> list = q.list();

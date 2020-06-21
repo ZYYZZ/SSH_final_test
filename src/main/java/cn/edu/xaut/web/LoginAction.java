@@ -1,18 +1,21 @@
 package cn.edu.xaut.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import cn.edu.xaut.entity.*;
 import cn.edu.xaut.service.*;
 
-
+@Controller
+@Scope("prototype")
 public class LoginAction extends ActionSupport{
 	
 	private List<Book> books;
@@ -23,7 +26,8 @@ public class LoginAction extends ActionSupport{
 	private int pageSize;
 	private int totalPage;
 	
-	private LoginService loginService = new LoginServiceImp();
+	@Resource(name="LoginServiceImp")
+	private LoginService loginService;
 	
 	
 	public List<UBL> getUbls() {

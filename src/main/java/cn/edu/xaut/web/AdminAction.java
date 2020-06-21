@@ -1,15 +1,19 @@
 package cn.edu.xaut.web;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import cn.edu.xaut.entity.*;
 import cn.edu.xaut.service.*;
 
+@Controller
+@Scope("prototype")
 public class AdminAction extends ActionSupport{
 	
 	private List<User> users;
@@ -20,8 +24,15 @@ public class AdminAction extends ActionSupport{
 
 	private int bid;
 	
-	private AdminService adminService = new AdminServiceImp();
+	@Resource(name="AdminServiceImp")
+	private AdminService adminService;
 	
+	public AdminService getAdminService() {
+		return adminService;
+	}
+	public void setAdminService(AdminService adminService) {
+		this.adminService = adminService;
+	}
 	public Book getBook() {
 		return book;
 	}

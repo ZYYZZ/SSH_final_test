@@ -1,13 +1,17 @@
 package cn.edu.xaut.web;
 
-import javax.servlet.http.HttpSession;
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import cn.edu.xaut.entity.User;
 import cn.edu.xaut.service.UserService;
-import cn.edu.xaut.service.UserServiceImp;
 
+@Controller
+@Scope("prototype")
 public class UserAction extends ActionSupport{
 	private int uid;
 	private int bid;
@@ -22,8 +26,15 @@ public class UserAction extends ActionSupport{
 
 	private User user;
 	
-	private UserService userService = new UserServiceImp();
+	@Resource(name="UserServiceImp")
+	private UserService userService;
 	
+	public UserService getUserService() {
+		return userService;
+	}
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 	public User getUser() {
 		return user;
 	}
@@ -46,14 +57,12 @@ public class UserAction extends ActionSupport{
 	public String rebook() {
 		//数据库删借书记录
 		userService.rebook(uid, bid);
-		System.out.println("rebook:"+this.bid+this.uid);
 		return SUCCESS;
 	}
 	
 	public String passwordupdate() {
 		//修改数据库密码
 		userService.passwordupdate(uid, npassword);
-		System.out.println("修改信息："+npassword);
 		return SUCCESS;
 	}
 	
