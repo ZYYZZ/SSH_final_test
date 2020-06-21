@@ -88,7 +88,7 @@
     	
 	    	<tr>
 	     	  	<td align = "center">新密码：</td>
-	    	  	<td><input type="password" name="user.password" id="newpassword" 
+	    	  	<td><input type="password" name="npassword" id="newpassword" 
 	    			onfocus="passwordBegin()" onblur="passwordCheck()"></td>
 	    	  	<td><span id="PASSWORD"></td>
 	    	</tr>

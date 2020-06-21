@@ -29,6 +29,7 @@ public class UBRDaoImp implements UBRDao {
 		session.save(ubr);
 		session.beginTransaction().commit();
 		session.close();
+
 	}
 
 	public List<UBR> findAll() {

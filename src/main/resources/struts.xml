@@ -68,6 +68,12 @@
     		</result>
     	</action>
     	
+    	<action name="Quit" class = "cn.edu.xaut.web.LoginAction" method = "quit">
+    		<result name = "success">
+    			login.jsp
+    		</result>
+    	</action>
+    	
     </package>
     
     <package name="Admin" namespace="/" extends="struts-default">

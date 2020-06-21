@@ -182,8 +182,8 @@
     	<a  href="Rebprint.action">
     		<button>查看还书表</button></a>
 	</div>
-	<div  align="right" margin-left:80%>
-		<a style = "color:white" href="Quit">退出</a>
+		<div align="right" margin-left:80%>
+		<a href="Quit.action"><button>退出</button></a>
 	</div>
 	<jsp:include page ="/DynamicTime.jsp"/>
 	

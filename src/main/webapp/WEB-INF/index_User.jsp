@@ -124,7 +124,7 @@
 	<h3 align="center" style = "color:white"> </h3>
 	
 	<div align="right" margin-left:80%>
-		<a href="BacktoUser.action"><button>退出</button></a>
+		<a href="Quit.action"><button>退出</button></a>
 	</div>
 	
 	<s:debug></s:debug>

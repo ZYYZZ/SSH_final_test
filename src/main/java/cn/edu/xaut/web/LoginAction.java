@@ -64,42 +64,43 @@ public class LoginAction extends ActionSupport{
 		this.user = user;
 	}
 
-	public String login() {
+	public String login() {	
 		
+		System.out.println("页码信息："+page);		
 		
-		System.out.println("页码信息："+page);
-		System.out.println("登录信息:"+user.getUsername()+"\n"+user.getPassword());
-		if(user.getUsername().equals("admin")&&user.getPassword().equals("password")) {
-			
-			books = loginService.findBookByPage(page, pageSize);
-			
-			this.totalPage = loginService.findTotalPage(pageSize);
-			
-			// 管理员界面
-			return "admin";
-		}
+		HttpSession session = ServletActionContext.getRequest().getSession();
 		
 		// 用户验证
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		User duser = new User();  
 		if(session.getAttribute("User")!=null) {
 			//为BacktoUser提供服务
-			duser = (User) session.getAttribute("User");
-		}else {
-		//数据库用户信息
-			duser = loginService.findUserByUsername(user.getUsername());
-		}	
-		if(user.getUsername().equals(duser.getUsername()) && user.getPassword().equals(duser.getPassword())){
+			user = (User) session.getAttribute("User");
+			ubls = loginService.findLendById(user.getId());
 			
-			ubls = loginService.findLendById(duser.getId());
-//			UBL ubl1 = new UBL(1,"书名1",101,"2020年6月19日");
-			
-			session.setAttribute("User", duser);
 			return "user";
 		}else {
-			// 验证失败
-			return INPUT;
+		//数据库用户信息
+			
+			if(user.getUsername().equals("admin")&&user.getPassword().equals("password")) {
+				
+				books = loginService.findBookByPage(page, pageSize);
+				
+				this.totalPage = loginService.findTotalPage(pageSize);
+				
+				// 管理员界面
+				return "admin";
+			}
+			
+			if(loginService.findUserByUsername(user.getUsername()).getPassword().equals(user.getPassword())){
+				ubls = loginService.findLendById(loginService.findUserByUsername(user.getUsername()).getId());
+				
+				session.setAttribute("User", loginService.findUserByUsername(user.getUsername()));
+				return "user";
+			}else {
+				// 验证失败
+				return INPUT;
+			}
 		}
+		
 	}
 	
 	public String backtoadmin() {
@@ -107,8 +108,14 @@ public class LoginAction extends ActionSupport{
 		return SUCCESS;
 	}
 
-public String backtouser() {
+	public String backtouser() {
 		System.out.println("backtouser//comed!");
+		return SUCCESS;
+	}
+	
+	public String quit() {
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		session.invalidate();
 		return SUCCESS;
 	}
 	
