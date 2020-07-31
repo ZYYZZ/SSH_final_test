@@ -5,7 +5,7 @@
 ## 设计
 
 ### 基础业务设计
-<p style="text-indent:2em">1. 需求分析</p>
+<p style="text-indent:2em" >1. 需求分析</p>
 
 &emsp;&emsp; （1） 管理员：对图书信息进行增删改查功能、对用户的查询删除功能、对图书借阅记录的查询  
 &emsp;&emsp; （2） 用户：对图书的借还书目登记、对自身信息的修改  
@@ -37,3 +37,160 @@
 ![概要设计](image\界面.png)  
   
 ## git的使用
+
+![概要设计](image\git使用.png)  
+
+## Struts2
+  
+### MVC基本使用
+```
+	<action name="BacktoAdmin" class = "cn.edu.xaut.web.LoginAction" method = "backtoadmin">
+       	<param name="user.username">admin</param>
+		<param name="user.password">password</param>  
+    	<result name = "success" type = "chain">
+    			Login_Check
+    	</result>
+    </action>
+
+    <action name="Login_Check" class="cn.edu.xaut.web.LoginAction" method = "login">
+       		<param name="pageSize">2</param>
+			<param name="page">1</param>
+       		<result name="admin" >
+       			/WEB-INF/index_Admin.jsp
+       		</result>
+       		<result name="user" >
+       			/WEB-INF/index_User.jsp
+       		</result>
+       		<result name="input">
+       			login.jsp
+       		</result>
+    </action>
+```
+
+&emsp;&emsp;使用action对jsp页面请求处理 不同的结果导向不同的jsp页面跳转
+
+### Struts2标签库  
+  
+```
+<tr align="center">
+	<td><b>图书ID</b></td>
+	<td><b>图书名称</b></td>
+	<td><b>借书日期</b></td>
+	<td><b>操作</b></td>
+</tr>	
+
+	<s:iterator var="ubl" value="ubls" status="st">
+	<tr>
+		<td> <s:property value="bid"/> </td>
+		<td> <s:property value="bname"/> </td>
+		<td> <s:property value="Ltime"/></td>
+		<td>
+			<form action="Rebook.action?bid=${bid}&uid=${uid}" method="post">
+				<input type = "submit" value="还书">
+				</form>
+		</td>
+	</tr>
+	</s:iterator>
+```
+&emsp;&emsp;使用s标签对用户借书信息进行显示
+
+## Hibernate
+
+### Hibernate持久化
+
+![uml图](image\对象UML图.png)
+
+```
+	public void addbook(Book nbook) {
+		Session session = sessionFactory.openSession();
+		session.save(nbook);
+		
+		session.close();
+		// TODO Auto-generated method stub
+	}
+```
+&emsp;&emsp;使用hibernate直接对对象持久化
+
+### Hibernate检索
+
+```
+	public Book seachone(int bid){
+		Session session = sessionFactory.openSession();
+		String hql = "from Book where id=?";
+		Query q = session.createQuery(hql);
+		q.setInteger(0, bid);
+		return ( (Book) q.list().get(0) );
+	}
+```
+&emsp;&emsp;使用hql语句对对象进行检索
+
+### 分页查询功能
+
+```
+public List<Book> findBookByPage(int page, int pageSize) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		String hql = "from Book";
+		Query q = session.createQuery(hql);
+		q.setFirstResult((page-1)*pageSize);
+		q.setMaxResults(pageSize);
+		
+		List<Book> books = q.list();
+		session.close();
+		return books;
+	}
+```
+
+&emsp;&emsp;使用页码和页码尺寸对数据库进行部分结果的查询
+
+```
+<s:iterator var="book" value="books" status="st">
+	<tr align = "center">
+		<td><s:property value="id"/></td>
+		<td><s:property value="name"/></td>
+		<td><s:property value="count"/></td>
+		<td><s:property value="price"/></td>
+		<td><s:property value="author"/></td>
+		<td>
+			<a href="bookupd.action?bid=${id} ">修改</a>
+		</td>
+		<td>
+			<a href="bookdel.action?bid=${id}">删除</a>
+		</td>	
+	</tr>
+</s:iterator>
+```
+
+&emsp;&emsp;使用s标签对分页查询结果进行显示
+
+## Spring
+
+### Spring容器的使用
+![注入关系](image\注入关系图.png)
+
+&emsp;&emsp; datasource注入sessionFactory后 注入四个Dao类中
+
+&emsp;&emsp; 四个Dao类分别注入不同的Service层类
+
+&emsp;&emsp; 每个Service分别注入对应的Action类
+
+### Spring AOP使用
+
+```
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(public * cn.edu.xaut.service..*.*(..))" id="myService"/>
+		<aop:advisor advice-ref="myAdivce" pointcut-ref="myService"/>
+	</aop:config>
+	
+	<tx:advice id="myAdivce" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+```
+&emsp;&emsp; 使用sop对事物进行管理 对所有service进行数据库操作室进行Transaction的begin和commit
+
